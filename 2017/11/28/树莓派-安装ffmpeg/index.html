@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="pi,树莓派,ffmpeg," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装ffmpeg安装各种解码器 lame 123456wget https://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gztar -zxvf lame-3.99.5.tar.gzcd lame-3.99.5 ./configure">
+<meta name="keywords" content="pi,树莓派,ffmpeg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派 安装ffmpeg">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/树莓派-安装ffmpeg/index.html">
+<meta property="og:site_name" content="Foolishchow">
+<meta property="og:description" content="安装ffmpeg安装各种解码器 lame 123456wget https://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gztar -zxvf lame-3.99.5.tar.gzcd lame-3.99.5 ./configure --enable-sharedmake make install  libog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-28T07:47:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派 安装ffmpeg">
+<meta name="twitter:description" content="安装ffmpeg安装各种解码器 lame 123456wget https://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gztar -zxvf lame-3.99.5.tar.gzcd lame-3.99.5 ./configure --enable-sharedmake make install  libog">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/28/树莓派-安装ffmpeg/"/>
+
+
+
+
+
+  <title>树莓派 安装ffmpeg | Foolishchow</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Foolishchow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/28/树莓派-安装ffmpeg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="foolishchow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Foolishchow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派 安装ffmpeg</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-28T14:52:15+08:00">
+                2017-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="安装ffmpeg"><a href="#安装ffmpeg" class="headerlink" title="安装ffmpeg"></a>安装ffmpeg</h1><h2 id="安装各种解码器"><a href="#安装各种解码器" class="headerlink" title="安装各种解码器"></a>安装各种解码器</h2><ul>
+<li><p>lame</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz</span><br><span class="line">tar -zxvf lame-3.99.5.tar.gz</span><br><span class="line"><span class="built_in">cd</span> lame-3.99.5 </span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>libogg</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz</span><br><span class="line">tar -zxvf libogg-1.3.2.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libogg-1.3.2</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>libvorbis</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#libvorbis依赖于libogg, 所以libogg必须先于libvorbis安装</span></span><br><span class="line">wget http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.gz</span><br><span class="line">tar -zxvf libvorbis-1.3.5.tar.gz</span><br><span class="line"><span class="built_in">cd</span>  libvorbis-1.3.5</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>xvidcore</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://downloads.xvid.org/downloads/xvidcore-1.3.2.tar.gz</span><br><span class="line">tar -zxvf xvidcore-1.3.2.tar.gz </span><br><span class="line"><span class="built_in">cd</span> xvidcore/build/generic</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>x264</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">last_x264.tar.bz2包</span><br><span class="line">因为没有找到好的资源，给一个ftp资源，下载最新版本之后上传到linux上</span><br><span class="line">ftp://ftp.videolan.org/pub/videolan/x264/snapshots/</span><br><span class="line">tar -jxvf last_x264.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> x264-snapshot-20170330-2245</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>libdts</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://down1.chinaunix.net/distfiles/ffmpeg-0.5.tar.bz2</span><br><span class="line">tar -jxvf libdca-0.0.5.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> libdca-0.0.5</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>faad2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/faac/faad2-src/faad2-2.7/faad2-2.7.tar.gz</span><br><span class="line">tar -zxvf faad2-2.7.tar.gz</span><br><span class="line"><span class="built_in">cd</span> faad2-2.7</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>faac   </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/faac/faac-src/faac-1.28/faac-1.28.tar.gz</span><br><span class="line">tar -zxvf faac-1.28.tar.gz</span><br><span class="line"><span class="built_in">cd</span> faac-1.28</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>编译FAAC-1.28时遇到错误<br>[mpeg4ip.h:126: error: new declaration ‘char<em> strcasestr(const char</em>, const char*)’]<br>找到mpeg4ip.h并修改修改</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">解决方法：</span><br><span class="line">从123行开始修改此文件mpeg4ip.h，到129行结束。</span><br><span class="line">修改前：</span><br><span class="line"><span class="comment">#ifdef __cplusplus</span></span><br><span class="line">extern <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">char *strcasestr(const char *haystack, const char *needle);</span><br><span class="line"><span class="comment">#ifdef __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line"></span><br><span class="line">修改后：</span><br><span class="line"><span class="comment">#ifdef __cplusplus</span></span><br><span class="line">extern <span class="string">"C++"</span> &#123;</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">const char *strcasestr(const char *haystack, const char *needle);</span><br><span class="line"><span class="comment">#ifdef __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#endif</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>amr-nb</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://ftp.penguin.cz/pub/users/utx/amr/amrnb-10.0.0.0.tar.bz2</span><br><span class="line">tar -jxvf amrnb-10.0.0.0.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> amrnb-11.0.0.0</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>amr-wb</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://ftp.penguin.cz/pub/users/utx/amr/amrwb-11.0.0.0.tar.bz2</span><br><span class="line">tar -jxvf amrwb-11.0.0.0.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> amrwb-11.0.0.0</span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line">make </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装yasm"><a href="#安装yasm" class="headerlink" title="安装yasm"></a>安装yasm</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ffmpeg编译中为了提高编译速度，使用了汇编指令，于是需要使用这个工具。</span></span><br><span class="line">yum -y install yasm</span><br></pre></td></tr></table></figure>
+<h2 id="安装ffmpeg-1"><a href="#安装ffmpeg-1" class="headerlink" title="安装ffmpeg"></a>安装ffmpeg</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">wget http://ffmpeg.org/releases/ffmpeg-3.2.4.tar.bz2</span><br><span class="line">tar -jxvf http://ffmpeg.org/releases/ffmpeg-3.2.4.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> ffmpeg-3.2.4</span><br><span class="line"><span class="comment">#其中–enable-shared表示生成动态链接库，可以供以后编程使用，同时生成的可执行程序也依赖这些动态库。如果不加上–enable-shared选项则使用静态链接的方式编译，此时不会生成动态库，同时生成的ffmpeg等的可执行文件也比较大，但他们不需要动态库就可以直接运行</span></span><br><span class="line">./configure --<span class="built_in">enable</span>-shared</span><br><span class="line"><span class="comment">#编译，需要较长时间，10分钟左右。</span></span><br><span class="line">make</span><br><span class="line"><span class="comment">#安装</span></span><br><span class="line">make install</span><br><span class="line"><span class="comment">#安装完成后</span></span><br><span class="line">vi /etc/ld.so.conf.d/</span><br><span class="line">把/usr/<span class="built_in">local</span>/ffmpeg/lib填写到该文件中</span><br><span class="line">再执行ldconfig，更新ld.so.cache，使修改生效。</span><br><span class="line"><span class="comment">#测试安装是否成功</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/ffmpeg/bin</span><br><span class="line"><span class="comment">#执行</span></span><br><span class="line">./ffmpeg</span><br><span class="line"><span class="comment">#出现如下内容说明安装成功</span></span><br><span class="line">ffmpeg version 3.2 Copyright (c) 2000-2016 the FFmpeg developers</span><br><span class="line">  built with gcc 4.4.7 (GCC) 20120313 (Red Hat 4.4.7-17)</span><br><span class="line">  configuration: --<span class="built_in">enable</span>-shared --prefix=/usr/<span class="built_in">local</span>/ffmpeg</span><br><span class="line">  libavutil      55. 34.100 / 55. 34.100</span><br><span class="line">  libavcodec     57. 64.100 / 57. 64.100</span><br><span class="line">  libavformat    57. 56.100 / 57. 56.100</span><br><span class="line">  libavdevice    57.  1.100 / 57.  1.100</span><br><span class="line">  libavfilter     6. 65.100 /  6. 65.100</span><br><span class="line">  libswscale      4.  2.100 /  4.  2.100</span><br><span class="line">  libswresample   2.  3.100 /  2.  3.100</span><br><span class="line">Hyper fast Audio and Video encoder</span><br><span class="line">usage: ffmpeg [options] [[infile options] -i infile]... &#123;[outfile options] outfile&#125;...</span><br><span class="line"></span><br><span class="line">Use -h to get full <span class="built_in">help</span> or, even better, run <span class="string">'man ffmpeg'</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用ffmpeg转换视频"><a href="#使用ffmpeg转换视频" class="headerlink" title="使用ffmpeg转换视频"></a>使用ffmpeg转换视频</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ffmpeg常用参数的介绍</span></span><br><span class="line"><span class="comment">#-i 指定要转换视频的源文件</span></span><br><span class="line"><span class="comment">#-s 视频转换后视频的分辨率</span></span><br><span class="line"><span class="comment">#-vcodec 视频转换时使用的编解码器</span></span><br><span class="line"><span class="comment">#-r 视频转换换的桢率(默认25桢每秒)</span></span><br><span class="line"><span class="comment">#-b 视频转换换的bit率</span></span><br><span class="line"><span class="comment">#-ab 音频转换后的bit率(默认64k)</span></span><br><span class="line"><span class="comment">#-acodec 制度音频使用的编码器</span></span><br><span class="line"><span class="comment">#-ac 制定转换后音频的声道</span></span><br><span class="line"><span class="comment">#-ar 音频转换后的采样率</span></span><br><span class="line">./ffmpeg -i source.wmv </span><br><span class="line">-f psp -r 29.97 -b 768k -ar 24000 -ab 64k -s 320*240 destination.mp4</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pi/" rel="tag"># pi</a>
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+          
+            <a href="/tags/ffmpeg/" rel="tag"># ffmpeg</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/28/树莓派-安装ubuntu-mate/" rel="next" title="树莓派 安装ubuntu mate">
+                <i class="fa fa-chevron-left"></i> 树莓派 安装ubuntu mate
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/28/树莓派-搭建gogs/" rel="prev" title="树莓派 搭建gogs">
+                树莓派 搭建gogs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">foolishchow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/foolishchow" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ffmpeg"><span class="nav-number">1.</span> <span class="nav-text">安装ffmpeg</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装各种解码器"><span class="nav-number">1.1.</span> <span class="nav-text">安装各种解码器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装yasm"><span class="nav-number">1.2.</span> <span class="nav-text">安装yasm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装ffmpeg-1"><span class="nav-number">1.3.</span> <span class="nav-text">安装ffmpeg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ffmpeg转换视频"><span class="nav-number">1.4.</span> <span class="nav-text">使用ffmpeg转换视频</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">foolishchow</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
